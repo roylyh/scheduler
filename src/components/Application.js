@@ -36,12 +36,12 @@ export default function Application(props) {;
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          {/* <DayList
+          <DayList
             days={days}
-            day={day}
-            setDay={setDay}
-          ></DayList> */}
-          <DayList {...{days, day, setDay}} />
+            value={day}
+            onChange={setDay}
+          ></DayList>
+          {/* <DayList {...{days, day, setDay}} /> */}
           {/* shorthand */}
         </nav>
         <img
