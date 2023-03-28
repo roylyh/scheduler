@@ -39,7 +39,13 @@ const useApplicationData = () => {
     return axios
       .put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        setState({ ...state, appointments });
+        const days = state.days.map((obj) => {
+          if (obj.appointments.includes(id)) {
+            return {...obj, spots:(obj.spots - 1)}
+          }
+          return obj;
+        })
+        setState({ ...state, appointments, days });
       });
   };
 
@@ -56,7 +62,13 @@ const useApplicationData = () => {
     return axios
       .delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-        setState({ ...state, appointments });
+        const days = state.days.map((obj) => {
+          if (obj.appointments.includes(id)) {
+            return {...obj, spots:(obj.spots + 1)}
+          }
+          return obj;
+        })
+        setState({ ...state, appointments,days });
       });
   };
 
