@@ -14,4 +14,15 @@ function getInterview(state, interview) {
   return { ...interview, interviewer: state.interviewers[interview.interviewer]}
 }
 
-export {getAppointmentsForDay, getInterview};
+function getInterviewersForDay(state, day) {
+  const filtDay = state.days.filter((item)=>{return item.name === day});
+  if (filtDay.length !== 0) {
+    return filtDay[0].interviewers.map((interviewId) => {
+      return state.interviewers[interviewId];
+    }
+    );
+  }
+  return [];
+}
+
+export {getAppointmentsForDay, getInterview, getInterviewersForDay};

@@ -3,7 +3,7 @@ import axios from "axios";
 import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 // const appointments = {
 //   1: {
@@ -56,7 +56,9 @@ export default function Application(props) {
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  console.log("dailAppointments", dailyAppointments);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
+
+  console.log("day: ", state.day, "dailyInterviewers: ", dailyInterviewers);
 
   const setDay = (day) => setState({ ...state, day });
   //https://web.compass.lighthouselabs.ca/02bb0462-34f4-4efe-ba0e-5e0147b1049a avoid add state in the dependency array
@@ -104,7 +106,8 @@ export default function Application(props) {
       <section className="schedule">
         {dailyAppointments.map((appointment) => {
           const interview = getInterview(state, appointment.interview);
-          return (<Appointment key={appointment.id} {...appointment} interview={interview} />);
+
+          return (<Appointment key={appointment.id} {...appointment} interview={interview} interviewers={dailyInterviewers} />);
         })}
         <Appointment key="last" time="5pm" />
       </section>
