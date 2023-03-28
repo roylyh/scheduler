@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import "components/Appointment/styles.scss";
 import useVisualMode from "../hooks/useVisualMode";
 
@@ -16,6 +17,8 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -30,6 +33,8 @@ export default function Appointment(props) {
     transition(SAVING);
     props.bookInterview(props.id,interview).then(()=>{
       transition(SHOW);
+    }).catch(err=>{
+      transition(ERROR_SAVE,true);
     });
   };
 
@@ -46,11 +51,13 @@ export default function Appointment(props) {
   }
 
   const onConfirm = () => {
-    transition(DELETING);
+    transition(DELETING,true);
     props.cancelInterview(props.id).then(() => {
       transition(EMPTY);
     }
-    );
+    ).catch(err => {
+      transition(ERROR_DELETE,true);
+    });
   }
 
   return (
@@ -96,6 +103,12 @@ export default function Appointment(props) {
           onSave={save}
           onCancel={back}
         />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not create the appointment." onClose={back}/>
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message="Could not cancel the appointment." onClose={back} />
       )}
     </article>
   );

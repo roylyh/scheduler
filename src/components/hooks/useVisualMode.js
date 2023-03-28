@@ -6,17 +6,18 @@ const useVisualMode = (initial) => {
 
   const transition = (newMode, replace=false) => {
     if (!replace) {
-      setHistory([...history, mode]);
+      setHistory(prev => ([...prev, mode]));
     }
     setMode(newMode);
+    
   };
 
   const back = () => {
     if (history.length > 1) {
       setMode(history[history.length - 1]);
       setHistory(
-        history.filter((_, i) => {
-          return i !== history.length - 1;
+        prev => prev.filter((_, i) => {
+          return i !== prev.length - 1;
         })
       );
     } else{
@@ -24,7 +25,7 @@ const useVisualMode = (initial) => {
     }
     
   };
-
+  console.log("transition history: ", history);
   return { mode, transition, back };
 };
 
