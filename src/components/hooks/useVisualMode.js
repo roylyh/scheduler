@@ -6,15 +6,15 @@ const useVisualMode = (initial) => {
 
   const transition = (newMode, replace=false) => {
     if (!replace) {
-      setHistory(prev => ([...prev, mode]));
+      setHistory(prev => ([...prev, newMode]));
+      // setHistory([...history, newMode]);
     }
     setMode(newMode);
-    
   };
 
   const back = () => {
     if (history.length > 1) {
-      setMode(history[history.length - 1]);
+      setMode(history[history.length - 2]);
       setHistory(
         prev => prev.filter((_, i) => {
           return i !== prev.length - 1;
@@ -23,9 +23,7 @@ const useVisualMode = (initial) => {
     } else{
       console.log("Aready at initial");
     }
-    
   };
-  console.log("transition history: ", history);
   return { mode, transition, back };
 };
 
