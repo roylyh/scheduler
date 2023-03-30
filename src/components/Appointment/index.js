@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Header from "./Header";
 import Show from "./Show";
@@ -113,3 +114,7 @@ export default function Appointment(props) {
     </article>
   );
 }
+
+Appointment.propTypes = {
+  interview: PropTypes.object
+};

@@ -15,7 +15,7 @@ const useApplicationData = () => {
       axios.get(`http://localhost:8001/api/appointments`),
       axios.get(`http://localhost:8001/api/interviewers`),
     ]).then((all) => {
-      console.log("all: ", all);
+      console.log(all);
       setState((prev) => ({
         ...prev,
         days: all[0].data,
