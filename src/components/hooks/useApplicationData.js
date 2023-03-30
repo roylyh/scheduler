@@ -26,7 +26,6 @@ const useApplicationData = () => {
 
   const setDay = (day) => setState({ ...state, day });
   const bookInterview = (id, interview) => {
-    console.log("bookInterview, ", "id=", id, "interview=", interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -39,17 +38,17 @@ const useApplicationData = () => {
       .put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
         const days = state.days.map((obj) => {
-          if (obj.appointments.includes(id)) {
-            return {...obj, spots:(obj.spots - 1)}
-          }
-          return obj;
-        })
+          const nullLength = obj.appointments.filter(
+            (item) => !appointments[item].interview
+          ).length;
+          return { ...obj, spots: nullLength };
+        });
+
         setState({ ...state, appointments, days });
       });
   };
 
   const cancelInterview = (id) => {
-    console.log("cancelInterview, id=", id);
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -63,11 +62,11 @@ const useApplicationData = () => {
       .then(() => {
         const days = state.days.map((obj) => {
           if (obj.appointments.includes(id)) {
-            return {...obj, spots:(obj.spots + 1)}
+            return { ...obj, spots: obj.spots + 1 };
           }
           return obj;
-        })
-        setState({ ...state, appointments,days });
+        });
+        setState({ ...state, appointments, days });
       });
   };
 
