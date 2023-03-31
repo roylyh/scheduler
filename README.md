@@ -3,11 +3,15 @@
 Interview Scheduler is a React app that allows you to book, edit or cancel appointments.  
 
 ## Final Product
-
+### App Overview
 !["screenshot of first page"](docs/firstpage.JPG)
-!["screenshot of urls page"](docs/urls.JPG)
-!["screenshot of edit page"](docs/edit.JPG)
-
+!["screenshot of addschedule page"](docs/addschedule.JPG)
+!["screenshot of editschedule page"](docs/editschedule.JPG)
+!["screenshot of deletechedule page"](docs/deletechedule.JPG)
+### Test results
+!["screenshot of storybook testing"](docs/storybook.JPG)
+!["screenshot of jest testing"](docs/jest.JPG)
+!["screenshot of cypress testing"](docs/cypress.JPG)
 
 ## Dependencies
 
