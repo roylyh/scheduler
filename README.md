@@ -1,23 +1,31 @@
 # Interview Scheduler
 
-## Setup
+Interview Scheduler is a React app that allows you to book, edit or cancel appointments.  
 
-Install dependencies with `npm install`.
+## Final Product
 
-## Running Webpack Development Server
+!["screenshot of first page"](docs/firstpage.JPG)
+!["screenshot of urls page"](docs/urls.JPG)
+!["screenshot of edit page"](docs/edit.JPG)
 
-```sh
-npm start
-```
 
-## Running Jest Test Framework
+## Dependencies
 
-```sh
-npm test
-```
+- Node.js
+- Express
+- EJS
+- bcryptjs
+- cookie-session
 
-## Running Storybook Visual Testbed
+## Getting Started
 
-```sh
-npm run storybook
-```
+- Install all dependencies (using the `npm install` command).
+- Run the development web server using the `node express_server.js` command.
+- Input localhost:8080 on your browser.
+
+## Functions of TinyApp
+
+1. Register/Login
+2. Create New Links
+3. Edit & Delete Short Links
+4. Use the Short URL
