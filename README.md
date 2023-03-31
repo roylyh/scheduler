@@ -2,7 +2,7 @@
 
 Interview Scheduler is a React app that allows you to book, edit or cancel appointments.  
 
-## Functions of TinyApp  
+## Functions  
 
 - A user can book an appointment between Monday and Friday.
 - A user can book, edit or cancel their appointments.
