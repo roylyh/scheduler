@@ -34,6 +34,7 @@ Interview Scheduler is a React app that allows you to book, edit or cancel appoi
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
+- Install cypress `npm install -g cypress@9.7.0` before you run cypress.
 - Run Webpack Development Server with npm start.
 - To run your tests:
     - Run Jest Test Framework with `npm test`.
